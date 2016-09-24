@@ -76,13 +76,12 @@
 
         <PreferenceScreen
                 android:key="abc_charging_light"
-                android:fragment="com.abc.settings.fragments.BatteryLightSettings"
+                android:fragment="com.abc.settings.batterylight.BatteryLightSettings"
                 android:title="@string/abc_battery_light_settings" />
-
 
         <PreferenceScreen
                 android:key="abc_notification_light"
-                android:fragment="com.abc.settings.fragments.NotificationLightSettings"
+                android:fragment="com.abc.settings.batterylight.NotificationLightSettings"
                 android:title="@string/abc_notification_light_settings" />
 
     </PreferenceCategory>
