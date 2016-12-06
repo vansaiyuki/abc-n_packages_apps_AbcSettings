@@ -18,4 +18,73 @@
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
         android:title="@string/abc_settings_title" >
 
+    <PreferenceCategory
+        android:key="abc_interface"
+        android:title="@string/abc_interface">
+
+        <PreferenceScreen
+            android:key="abc_lockscreen_settings"
+            android:fragment="com.abc.settings.fragments.LockScreenSettings"
+            android:title="@string/lockscreen_settings_title"/>
+
+        <PreferenceScreen
+            android:key="abc_navigation_options"
+            android:fragment="com.abc.settings.fragments.NavbarSettings"
+            android:title="@string/navigationbar_settings_title" />
+
+        <PreferenceScreen
+            android:key="abc_notification_drawer_settings"
+            android:fragment="com.abc.settings.fragments.NotificationDrawerSettings"
+            android:title="@string/notification_drawer_settings_title"/>
+
+        <PreferenceScreen
+            android:key="abc_statusbar_settings"
+            android:fragment="com.abc.settings.fragments.StatusBarSettings"
+            android:title="@string/statusbar_settings_title"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="abc_sys"
+        android:title="@string/abc_sys">
+
+        <PreferenceScreen
+            android:key="abc_power_settings"
+            android:fragment="com.abc.settings.fragments.PowerSettings"
+            android:title="@string/power_settings_title"/>
+
+        <PreferenceScreen
+            android:key="abc_volumerocker_settings"
+            android:fragment="com.abc.settings.fragments.VolumeRockerSettings"
+            android:title="@string/volumerocker_settings_title"/>
+
+        <PreferenceScreen
+            android:key="abc_screen_settings"
+            android:fragment="com.abc.settings.fragments.ScreenSettings"
+            android:title="@string/screen_settings_title"/>
+
+        <PreferenceScreen
+            android:key="abc_other_settings"
+            android:fragment="com.abc.settings.fragments.OtherSettings"
+            android:title="@string/other_settings_title"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="abc_leds"
+        android:title="@string/abc_leds" >
+
+        <PreferenceScreen
+                android:key="abc_charging_light"
+                android:fragment="com.abc.settings.fragments.BatteryLightSettings"
+                android:title="@string/abc_battery_light_settings" />
+
+
+        <PreferenceScreen
+                android:key="abc_notification_light"
+                android:fragment="com.abc.settings.fragments.NotificationLightSettings"
+                android:title="@string/abc_notification_light_settings" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
