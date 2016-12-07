@@ -23,7 +23,8 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceScreen;
-import android.provider.Settings;
+
+import com.abc.settings.preferences.CustomSeekBarPreference;
 
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 
@@ -39,9 +40,11 @@ public class OtherSettings extends SettingsPreferenceFragment implements
 
     private static final String APPS_SECURITY = "apps_security";
     private static final String SMS_OUTGOING_CHECK_MAX_COUNT = "sms_outgoing_check_max_count";
+    private static final String SCREENSHOT_DELAY = "screenshot_delay";
 
     private ListPreference mSmsCount;
     private int mSmsCountValue;
+    private CustomSeekBarPreference mScreenshotDelay;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,11 @@ public class OtherSettings extends SettingsPreferenceFragment implements
             prefScreen.removePreference(appsSecCategory);
         }
 
+        mScreenshotDelay = (CustomSeekBarPreference) findPreference(SCREENSHOT_DELAY);
+        int screenshotDelay = Settings.System.getInt(resolver,
+                Settings.System.SCREENSHOT_DELAY, 1000);
+        mScreenshotDelay.setValue(screenshotDelay / 1);
+        mScreenshotDelay.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -82,6 +90,11 @@ public class OtherSettings extends SettingsPreferenceFragment implements
                     mSmsCount.getEntries()[index]);
             Settings.Global.putInt(resolver,
                     Settings.Global.SMS_OUTGOING_CHECK_MAX_COUNT, mSmsCountValue);
+            return true;
+        } else if (preference == mScreenshotDelay) {
+            int screenshotDelay = (Integer) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.SCREENSHOT_DELAY, screenshotDelay * 1);
             return true;
         }
         return false;
