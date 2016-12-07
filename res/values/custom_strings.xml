@@ -205,4 +205,12 @@
     <!-- Wake on Plug -->
     <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
     <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
+
+    <!-- Sms security limit -->
+    <string name="apps_security_options_title">Apps security</string>
+    <string name="sms_outgoing_check_max_count_title">SMS apps message limit</string>
+    <string name="sms_outgoing_check_max_count_dialog">How many messages per minute an app can send before showing an alert</string>
+    <string name="sms_outgoing_check_max_count_default">30 per minute (default)</string>
+    <string name="sms_outgoing_check_max_count_hundred">100 per minute</string>
+    <string name="sms_outgoing_check_max_count_sixhundred">600 per minute</string>
 </resources>
