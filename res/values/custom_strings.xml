@@ -116,4 +116,8 @@
     <string name="qs_wifi_easy_toggle_summary">Enable one tap action to enable or disable WiFi</string>
     <string name="qs_bt_easy_toggle_title">Bluetooth easy toggle</string>
     <string name="qs_bt_easy_toggle_summary">Enable one tap action to enable or disable Bluetooth</string>
+
+    <!-- Volume Key Rotation -->
+    <string name="swap_volume_buttons_title">Reorient</string>
+    <string name="swap_volume_buttons_summary">Swap volume buttons when the screen is rotated</string>
 </resources>

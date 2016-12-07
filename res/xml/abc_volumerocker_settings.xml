@@ -13,6 +13,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <SwitchPreference
+        android:key="swap_volume_buttons"
+        android:title="@string/swap_volume_buttons_title"
+        android:summary="@string/swap_volume_buttons_summary" />
+
     <com.abc.settings.preferences.SecureSettingSwitchPreference
         android:key="sysui_volume_down_silent"
         android:title="@string/volbtn_down_zen_title"
