@@ -18,5 +18,11 @@
         android:title="@string/toast_icon_title"
         android:summary="@string/toast_icon_summary"
         android:defaultValue="true" />
+
+    <com.abc.settings.preferences.SystemSettingSwitchPreference
+        android:key="screenshot_sound"
+        android:title="@string/screenshot_sound_title"
+        android:summary="@string/screenshot_sound_summary"
+        android:defaultValue="false" />
 </PreferenceScreen>
 
