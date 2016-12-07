@@ -32,6 +32,11 @@
         android:defaultValue="true"
         android:dependency="volume_rocker_wake" />
 
+    <PreferenceScreen
+        android:key="volume_steps"
+        android:title="@string/volume_steps_title"
+        android:fragment="com.abc.settings.fragments.VolumeSteps" />
+
     <com.abc.settings.preferences.SecureSettingSwitchPreference
         android:key="sysui_volume_down_silent"
         android:title="@string/volbtn_down_zen_title"
