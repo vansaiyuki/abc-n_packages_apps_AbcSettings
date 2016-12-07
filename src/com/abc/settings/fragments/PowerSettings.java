@@ -15,15 +15,18 @@
  */
 package com.abc.settings.fragments;
 
+import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
 
 import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.internal.util.pure.DuUtils;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -31,11 +34,22 @@ import com.android.settings.SettingsPreferenceFragment;
 public class PowerSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String KEY_PROXIMITY_WAKE = "proximity_on_wake";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.abc_power_settings);
 
+        final Activity activity = getActivity();
+        final ContentResolver resolver = activity.getContentResolver();
+
+        boolean proximityCheckOnWake = getResources().getBoolean(
+                com.android.internal.R.bool.config_proximityCheckOnWake);
+        if (!proximityCheckOnWake) {
+            getPreferenceScreen().removePreference(findPreference(KEY_PROXIMITY_WAKE));
+            Settings.System.putInt(resolver, Settings.System.PROXIMITY_ON_WAKE, 0);
+        }
     }
 
     @Override
