@@ -103,6 +103,9 @@
     <string name="double_tap_sleep_anywhere_title">Double-tap to sleep anywhere</string>
     <string name="double_tap_sleep_anywhere_summary">Double tap anywhere on the lockscreen to put the device to sleep</string>
 
+    <string name="double_tap_wake_doze_title">Double-tap to wake on doze</string>
+    <string name="double_tap_wake_doze_summary">Require a double-tap to wake the device on a doze pulse screen</string>
+
     <string name="sysui_qqs_count_title">Small tiles number</string>
 
     <!-- Disable QS on secure Lockscreen -->

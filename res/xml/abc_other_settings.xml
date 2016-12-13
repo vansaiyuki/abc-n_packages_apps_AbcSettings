@@ -25,6 +25,12 @@
         android:summary="@string/screenshot_sound_summary"
         android:defaultValue="false" />
 
+    <com.abc.settings.preferences.SystemSettingSwitchPreference
+            android:key="double_tap_wake_doze"
+            android:title="@string/double_tap_wake_doze_title"
+            android:summary="@string/double_tap_wake_doze_summary"
+            android:defaultValue="true" />
+
     <PreferenceCategory
         android:key="apps_security"
         android:title="@string/apps_security_options_title" >
