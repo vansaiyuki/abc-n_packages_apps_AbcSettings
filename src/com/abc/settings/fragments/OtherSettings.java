@@ -56,7 +56,7 @@ public class OtherSettings extends SettingsPreferenceFragment implements
         PreferenceCategory appsSecCategory = (PreferenceCategory) findPreference(APPS_SECURITY);
 
         mSmsCount = (ListPreference) findPreference(SMS_OUTGOING_CHECK_MAX_COUNT);
-        mSmsCountValue = Settings.Secure.getInt(resolver,
+        mSmsCountValue = Settings.Global.getInt(resolver,
                 Settings.Global.SMS_OUTGOING_CHECK_MAX_COUNT, 30);
         mSmsCount.setValue(Integer.toString(mSmsCountValue));
         mSmsCount.setSummary(mSmsCount.getEntry());
