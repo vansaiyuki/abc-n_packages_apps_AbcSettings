@@ -473,5 +473,10 @@
     <!-- Advanced night mode tile -->
     <string name="qs_night_brightness_toggle_title">Night mode low brightness</string>
     <string name="qs_night_brightness_toggle_summary">Automatically set a low brightness when enabling night mode from tile. Disabling night mode will restore the previous user value.</string>
+    <string name="qs_night_brightness_value_title">Night brightness value</string>
+    <string name="qs_night_brightness_value_dialog">Which level the brightness will be set to</string>
+    <string name="qs_night_bright_less">Low brightness</string>
+    <string name="qs_night_bright_medium">Medium brightness</string>
+    <string name="qs_night_bright_min">Minimum brightness</string>
 
 </resources>
