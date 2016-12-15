@@ -469,4 +469,9 @@
     <string name="smartbar_config_backup_error_toast">Error saving Smartbar profile</string>
     <string name="smartbar_config_restore_error_toast">Error restoring Smartbar profile</string>
     <string name="navbar_buttons_alpha_title">Button transparency</string>
+
+    <!-- Advanced night mode tile -->
+    <string name="qs_night_brightness_toggle_title">Night mode low brightness</string>
+    <string name="qs_night_brightness_toggle_summary">Automatically set a low brightness when enabling night mode from tile. Disabling night mode will restore the previous user value.</string>
+
 </resources>
