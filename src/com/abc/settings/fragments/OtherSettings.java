@@ -41,13 +41,10 @@ public class OtherSettings extends SettingsPreferenceFragment implements
     private static final String APPS_SECURITY = "apps_security";
     private static final String SMS_OUTGOING_CHECK_MAX_COUNT = "sms_outgoing_check_max_count";
     private static final String SCREENSHOT_DELAY = "screenshot_delay";
-    private static final String QS_NIGHT_BRIGHTNESS_VALUE = "qs_night_brightness_value";
 
     private ListPreference mSmsCount;
     private int mSmsCountValue;
     private CustomSeekBarPreference mScreenshotDelay;
-    private ListPreference mNightBrightValue;
-    private int mNightBrightValueVal;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,13 +71,6 @@ public class OtherSettings extends SettingsPreferenceFragment implements
                 Settings.System.SCREENSHOT_DELAY, 1000);
         mScreenshotDelay.setValue(screenshotDelay / 1);
         mScreenshotDelay.setOnPreferenceChangeListener(this);
-
-        mNightBrightValue = (ListPreference) findPreference(QS_NIGHT_BRIGHTNESS_VALUE);
-        mNightBrightValueVal = Settings.Secure.getInt(resolver,
-                Settings.Secure.QS_NIGHT_BRIGHTNESS_VALUE, 0);
-        mNightBrightValue.setValue(Integer.toString(mNightBrightValueVal));
-        mNightBrightValue.setSummary(mNightBrightValue.getEntry());
-        mNightBrightValue.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -105,14 +95,6 @@ public class OtherSettings extends SettingsPreferenceFragment implements
             int screenshotDelay = (Integer) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.SCREENSHOT_DELAY, screenshotDelay * 1);
-            return true;
-        } else if (preference == mNightBrightValue) {
-            mNightBrightValueVal = Integer.valueOf((String) newValue);
-            int index = mNightBrightValue.findIndexOfValue((String) newValue);
-            mNightBrightValue.setSummary(
-                    mNightBrightValue.getEntries()[index]);
-            Settings.Secure.putInt(resolver,
-                    Settings.Secure.QS_NIGHT_BRIGHTNESS_VALUE, mNightBrightValueVal);
             return true;
         }
         return false;

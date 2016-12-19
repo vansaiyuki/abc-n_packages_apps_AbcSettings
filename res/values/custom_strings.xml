@@ -470,12 +470,4 @@
     <string name="smartbar_config_restore_error_toast">Error restoring Smartbar profile</string>
     <string name="navbar_buttons_alpha_title">Button transparency</string>
 
-    <!-- Advanced night mode tile -->
-    <string name="qs_night_brightness_value_title">Night light low brightness</string>
-    <string name="qs_night_brightness_value_dialog">Auotmatically set low brightness value when enabling night light</string>
-    <string name="qs_night_bright_disabled">Don\'t change brightness</string>
-    <string name="qs_night_bright_less">Set low brightness</string>
-    <string name="qs_night_bright_medium">Set medium brightness</string>
-    <string name="qs_night_bright_min">Set minimum brightness</string>
-
 </resources>
