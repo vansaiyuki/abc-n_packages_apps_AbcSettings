@@ -18,7 +18,6 @@ package com.abc.settings.fragments;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.provider.Settings;
@@ -30,18 +29,12 @@ import com.android.settings.SettingsPreferenceFragment;
 
 import com.abc.settings.preferences.CustomSeekBarPreference;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class NotificationDrawerSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String KEY_SYSUI_QQS_COUNT = "sysui_qqs_count_key";
-    private static final String QS_NIGHT_BRIGHTNESS_VALUE = "qs_night_brightness_value";
 
     private CustomSeekBarPreference mSysuiQqsCount;
-    private ListPreference mNightBrightValue;
-    private int mNightBrightValueVal;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,14 +47,6 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment imple
                 Settings.Secure.QQS_COUNT, 5);
         mSysuiQqsCount.setValue(SysuiQqsCount / 1);
         mSysuiQqsCount.setOnPreferenceChangeListener(this);
-
-        mNightBrightValue = (ListPreference) findPreference(QS_NIGHT_BRIGHTNESS_VALUE);
-        mNightBrightValueVal = Settings.Secure.getInt(resolver,
-                Settings.Secure.QS_NIGHT_BRIGHTNESS_VALUE, 0);
-        mNightBrightValue.setValue(Integer.toString(mNightBrightValueVal));
-        mNightBrightValue.setSummary(mNightBrightValue.getEntry());
-        mNightBrightValue.setOnPreferenceChangeListener(this);
-
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -71,14 +56,6 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment imple
             int SysuiQqsCount = (Integer) newValue;
             Settings.Secure.putInt(resolver,
                     Settings.Secure.QQS_COUNT, SysuiQqsCount * 1);
-            return true;
-        } else if (preference == mNightBrightValue) {
-            mNightBrightValueVal = Integer.valueOf((String) newValue);
-            int index = mNightBrightValue.findIndexOfValue((String) newValue);
-            mNightBrightValue.setSummary(
-                    mNightBrightValue.getEntries()[index]);
-            Settings.Secure.putInt(resolver,
-                    Settings.Secure.QS_NIGHT_BRIGHTNESS_VALUE, mNightBrightValueVal);
             return true;
         }
         return false;
