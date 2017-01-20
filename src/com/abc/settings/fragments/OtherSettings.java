@@ -18,6 +18,7 @@ package com.abc.settings.fragments;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -67,8 +68,8 @@ public class OtherSettings extends SettingsPreferenceFragment implements
         }
 
         mScreenshotDelay = (CustomSeekBarPreference) findPreference(SCREENSHOT_DELAY);
-        int screenshotDelay = Settings.System.getInt(resolver,
-                Settings.System.SCREENSHOT_DELAY, 1000);
+        int screenshotDelay = Settings.System.getIntForUser(resolver,
+                Settings.System.SCREENSHOT_DELAY, 1000, UserHandle.USER_CURRENT);
         mScreenshotDelay.setValue(screenshotDelay / 1);
         mScreenshotDelay.setOnPreferenceChangeListener(this);
     }
@@ -93,8 +94,8 @@ public class OtherSettings extends SettingsPreferenceFragment implements
             return true;
         } else if (preference == mScreenshotDelay) {
             int screenshotDelay = (Integer) newValue;
-            Settings.System.putInt(resolver,
-                    Settings.System.SCREENSHOT_DELAY, screenshotDelay * 1);
+            Settings.System.putIntForUser(resolver,
+                    Settings.System.SCREENSHOT_DELAY, screenshotDelay * 1, UserHandle.USER_CURRENT);
             return true;
         }
         return false;

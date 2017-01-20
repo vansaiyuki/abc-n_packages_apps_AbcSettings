@@ -78,14 +78,14 @@ public class NavbarSettings extends SettingsPreferenceFragment implements OnPref
         mFlingSettings = (PreferenceScreen) findPreference(KEY_FLING_NAVBAR_SETTINGS);
         mSmartbarSettings = (PreferenceScreen) findPreference(KEY_SMARTBAR_SETTINGS);
 
-        boolean showing = Settings.Secure.getInt(getContentResolver(),
+        boolean showing = Settings.Secure.getIntForUser(getContentResolver(),
                 Settings.Secure.NAVIGATION_BAR_VISIBLE,
-                DUActionUtils.hasNavbarByDefault(getActivity()) ? 1 : 0) != 0;
+                DUActionUtils.hasNavbarByDefault(getActivity()) ? 1 : 0, UserHandle.USER_CURRENT) != 0;
         updateBarVisibleAndUpdatePrefs(showing);
         mNavbarVisibility.setOnPreferenceChangeListener(this);
 
-        int mode = Settings.Secure.getInt(getContentResolver(), Settings.Secure.NAVIGATION_BAR_MODE,
-                0);
+        int mode = Settings.Secure.getIntForUser(getContentResolver(), Settings.Secure.NAVIGATION_BAR_MODE,
+                0, UserHandle.USER_CURRENT);
 
         updateBarModeSettings(mode);
         mNavbarMode.setOnPreferenceChangeListener(this);
@@ -132,14 +132,14 @@ public class NavbarSettings extends SettingsPreferenceFragment implements OnPref
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference.equals(mNavbarMode)) {
             int mode = Integer.parseInt(((String) newValue).toString());
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.NAVIGATION_BAR_MODE, mode);
+            Settings.Secure.putIntForUser(getContentResolver(),
+                    Settings.Secure.NAVIGATION_BAR_MODE, mode, UserHandle.USER_CURRENT);
             updateBarModeSettings(mode);
             return true;
         } else if (preference.equals(mNavbarVisibility)) {
             boolean showing = ((Boolean)newValue);
-            Settings.Secure.putInt(getContentResolver(), Settings.Secure.NAVIGATION_BAR_VISIBLE,
-                    showing ? 1 : 0);
+            Settings.Secure.putIntForUser(getContentResolver(), Settings.Secure.NAVIGATION_BAR_VISIBLE,
+                    showing ? 1 : 0, UserHandle.USER_CURRENT);
             updateBarVisibleAndUpdatePrefs(showing);
             return true;
         } else if (preference == mBarHeightPort) {

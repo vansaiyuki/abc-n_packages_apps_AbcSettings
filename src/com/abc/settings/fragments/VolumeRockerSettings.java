@@ -17,6 +17,7 @@ package com.abc.settings.fragments;
 
 import android.content.ContentResolver;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
@@ -47,22 +48,22 @@ public class VolumeRockerSettings extends SettingsPreferenceFragment implements
         // volume rocker reorient
         mSwapVolumeButtons = (SwitchPreference) findPreference(SWAP_VOLUME_BUTTONS);
         mSwapVolumeButtons.setOnPreferenceChangeListener(this);
-        int swapVolumeButtons = Settings.System.getInt(getContentResolver(),
-                SWAP_VOLUME_BUTTONS, 0);
+        int swapVolumeButtons = Settings.System.getIntForUser(getContentResolver(),
+                SWAP_VOLUME_BUTTONS, 0, UserHandle.USER_CURRENT);
         mSwapVolumeButtons.setChecked(swapVolumeButtons != 0);
 
         // volume rocker wake
         mVolumeRockerWake = (SwitchPreference) findPreference(VOLUME_ROCKER_WAKE);
         mVolumeRockerWake.setOnPreferenceChangeListener(this);
-        int volumeRockerWake = Settings.System.getInt(getContentResolver(),
-                VOLUME_ROCKER_WAKE, 0);
+        int volumeRockerWake = Settings.System.getIntForUser(getContentResolver(),
+                VOLUME_ROCKER_WAKE, 0, UserHandle.USER_CURRENT);
         mVolumeRockerWake.setChecked(volumeRockerWake != 0);
 
         // volume rocker music control
         mVolumeRockerMusicControl = (SwitchPreference) findPreference(VOLUME_ROCKER_MUSIC_CONTROLS);
         mVolumeRockerMusicControl.setOnPreferenceChangeListener(this);
-        int volumeRockerMusicControl = Settings.System.getInt(getContentResolver(),
-                VOLUME_ROCKER_MUSIC_CONTROLS, 0);
+        int volumeRockerMusicControl = Settings.System.getIntForUser(getContentResolver(),
+                VOLUME_ROCKER_MUSIC_CONTROLS, 0, UserHandle.USER_CURRENT);
         mVolumeRockerMusicControl.setChecked(volumeRockerMusicControl != 0);
     }
 
@@ -75,18 +76,18 @@ public class VolumeRockerSettings extends SettingsPreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mSwapVolumeButtons) {
             boolean value = (Boolean) newValue;
-            Settings.System.putInt(getContentResolver(), SWAP_VOLUME_BUTTONS,
-                    value ? 1 : 0);
+            Settings.System.putIntForUser(getContentResolver(), SWAP_VOLUME_BUTTONS,
+                    value ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
         } else if (preference == mVolumeRockerWake) {
             boolean value = (Boolean) newValue;
-            Settings.System.putInt(getContentResolver(), VOLUME_ROCKER_WAKE,
-                    value ? 1 : 0);
+            Settings.System.putIntForUser(getContentResolver(), VOLUME_ROCKER_WAKE,
+                    value ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
         } else if (preference == mVolumeRockerMusicControl) {
             boolean value = (Boolean) newValue;
-            Settings.System.putInt(getContentResolver(), VOLUME_ROCKER_MUSIC_CONTROLS,
-                    value ? 1 : 0);
+            Settings.System.putIntForUser(getContentResolver(), VOLUME_ROCKER_MUSIC_CONTROLS,
+                    value ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
         }
         return false;

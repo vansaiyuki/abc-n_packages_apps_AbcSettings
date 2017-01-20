@@ -18,6 +18,7 @@ package com.abc.settings.fragments;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -60,16 +61,16 @@ public class PowerSettings extends SettingsPreferenceFragment implements
         if (!DuUtils.deviceSupportsFlashLight(getActivity())) {
             prefSet.removePreference(mKeyguardTorch);
         } else {
-        mKeyguardTorch.setChecked((Settings.System.getInt(resolver,
-                Settings.System.KEYGUARD_TOGGLE_TORCH, 0) == 1));
+        mKeyguardTorch.setChecked((Settings.System.getIntForUser(resolver,
+                Settings.System.KEYGUARD_TOGGLE_TORCH, 0, UserHandle.USER_CURRENT) == 1));
         }
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if  (preference == mKeyguardTorch) {
             boolean checked = ((SwitchPreference)preference).isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.KEYGUARD_TOGGLE_TORCH, checked ? 1:0);
+            Settings.System.putIntForUser(getActivity().getContentResolver(),
+                    Settings.System.KEYGUARD_TOGGLE_TORCH, checked ? 1:0, UserHandle.USER_CURRENT);
             return true;
         }
         return false;
