@@ -31,6 +31,16 @@
             android:summary="@string/double_tap_wake_doze_summary"
             android:defaultValue="true" />
 
+    <com.abc.settings.preferences.CustomSeekBarPreference
+        android:key="screenshot_delay"
+        android:title="@string/screenshot_delay_title"
+        android:summary="@string/screenshot_delay_summary"
+            android:max="10000"
+            settings:min="100"
+            settings:interval="100"
+            settings:units="ms"
+            android:persistent="false" />
+
     <PreferenceCategory
         android:key="apps_security"
         android:title="@string/apps_security_options_title" >
@@ -45,14 +55,5 @@
             android:defaultValue="30" />
     </PreferenceCategory>
 
-    <com.abc.settings.preferences.CustomSeekBarPreference
-        android:key="screenshot_delay"
-        android:title="@string/screenshot_delay_title"
-        android:summary="@string/screenshot_delay_summary"
-            android:max="10000"
-            settings:min="100"
-            settings:interval="100"
-            settings:units="ms"
-            android:persistent="false" />
 </PreferenceScreen>
 
