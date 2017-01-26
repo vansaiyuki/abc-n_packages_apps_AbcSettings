@@ -185,10 +185,6 @@
     <string name="unlock_scramble_pin_layout_title">Scramble layout</string>
     <string name="unlock_scramble_pin_layout_summary">Scramble PIN layout when unlocking device</string>
 
-    <!-- Pin scramble -->
-    <string name="lockscreen_pin_ripple_title">Lockscreen Pin Ripple</string>
-    <string name="lockscreen_pin_ripple_summary">Disable to remove ripple when entering pin numbers</string>
-
     <!-- Lockscreen Torch -->
     <string name="keyguard_torch_title">Lockscreen torch</string>
     <string name="keyguard_torch_summary">Longpress power button while screen is off to turn on flashlight</string>
