@@ -504,7 +504,9 @@
     <string name="recent_panel_lefty_mode_title">Show on the left edge</string>
     <string name="recent_panel_lefty_mode_summary">Show recent apps panel on the left edge</string>
 
-<!-- Heads up - ticker -->
+    <!-- Heads up - ticker -->
     <string name="heads_up_user_enabled_title">Heads up</string>
     <string name="heads_up_user_enabled_summary">Toggle apps heads up without breaking system ones</string>
+    <string name="ticker_title">Ticker</string>
+    <string name="ticker_summary">Enable the old status bar notification ticker. Do not use in conjunction with Heads Up.</string>
 </resources>
