@@ -18,6 +18,7 @@ package com.abc.settings.fragments;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
@@ -31,11 +32,33 @@ import com.android.settings.SettingsPreferenceFragment;
 public class StatusBarSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String NOTIFICATION_MODE = "notification_mode";
+
+    private ListPreference mNotificationMode;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.abc_statusbar_settings);
 
+        mNotificationMode = (ListPreference) findPreference(NOTIFICATION_MODE);
+        mNotificationMode.setOnPreferenceChangeListener(this);
+        int headsupMode = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HEADS_UP_USER_ENABLED,
+                1, UserHandle.USER_CURRENT);
+        int tickerMode = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.STATUS_BAR_SHOW_TICKER,
+                0, UserHandle.USER_CURRENT);
+        int notificationMode;
+        if (headsupMode == 1) {
+            notificationMode = 0;
+        } else if (tickerMode == 1) {
+            notificationMode = 1;
+        } else {
+            notificationMode = 2;
+        }
+        mNotificationMode.setValue(String.valueOf(notificationMode));
+        mNotificationMode.setSummary(mNotificationMode.getEntry());
     }
 
     @Override
@@ -44,6 +67,30 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+        if (preference.equals(mNotificationMode)) {
+            int notificationMode = Integer.parseInt(((String) newValue).toString());
+            int headsupMode;
+            int tickerMode;
+            if (notificationMode == 0) {
+                headsupMode = 1;
+                tickerMode = 0;
+            } else if (notificationMode == 1) {
+                headsupMode = 0;
+                tickerMode = 1;
+            } else {
+                headsupMode = 0;
+                tickerMode = 0;
+            }
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.HEADS_UP_USER_ENABLED, headsupMode, UserHandle.USER_CURRENT);
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.STATUS_BAR_SHOW_TICKER, tickerMode, UserHandle.USER_CURRENT);
+            int index = mNotificationMode.findIndexOfValue((String) newValue);
+            mNotificationMode.setSummary(
+                    mNotificationMode.getEntries()[index]);
+            return true;
+        }
         return false;
     }
-} 
+}
