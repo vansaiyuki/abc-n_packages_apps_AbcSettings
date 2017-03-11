@@ -39,6 +39,7 @@
     <string name="abc_leds">LED lights</string>
     <string name="abc_battery_light_settings">Battery charging light</string>
     <string name="abc_notification_light_settings">Notifications light</string>
+    <string name="slimrecent_settings_title">Recents Panel</string>
 
     <!-- General strings -->
     <string name="cancel">Cancel</string>

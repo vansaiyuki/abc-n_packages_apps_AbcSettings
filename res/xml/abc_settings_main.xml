@@ -42,6 +42,11 @@
             android:fragment="com.abc.settings.fragments.StatusBarSettings"
             android:title="@string/statusbar_settings_title"/>
 
+        <PreferenceScreen
+            android:key="abc_slimrecent_settings"
+            android:fragment="com.abc.settings.fragments.SlimRecent"
+            android:title="@string/slimrecent_settings_title"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
