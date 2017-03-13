@@ -13,6 +13,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <ListPreference
+        android:entries="@array/notification_mode_entries"
+        android:entryValues="@array/notification_mode_values"
+        android:key="notification_mode"
+        android:summary="%s"
+        android:title="@string/notification_mode_title" />
+
     <PreferenceScreen
             android:title="@string/power_notification_title"
             android:summary="@string/power_notification_summary">

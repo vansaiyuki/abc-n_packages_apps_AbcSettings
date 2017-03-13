@@ -18,6 +18,8 @@ package com.abc.settings.fragments;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.provider.Settings;
@@ -33,8 +35,10 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment imple
         Preference.OnPreferenceChangeListener {
 
     private static final String KEY_SYSUI_QQS_COUNT = "sysui_qqs_count_key";
+    private static final String NOTIFICATION_MODE = "notification_mode";
 
     private CustomSeekBarPreference mSysuiQqsCount;
+    private ListPreference mNotificationMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,25 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment imple
                 Settings.Secure.QQS_COUNT, 5);
         mSysuiQqsCount.setValue(SysuiQqsCount / 1);
         mSysuiQqsCount.setOnPreferenceChangeListener(this);
+
+        mNotificationMode = (ListPreference) findPreference(NOTIFICATION_MODE);
+        mNotificationMode.setOnPreferenceChangeListener(this);
+        int headsupMode = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HEADS_UP_USER_ENABLED,
+                1, UserHandle.USER_CURRENT);
+        int tickerMode = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.STATUS_BAR_SHOW_TICKER,
+                0, UserHandle.USER_CURRENT);
+        int notificationMode;
+        if (headsupMode == 1) {
+            notificationMode = 0;
+        } else if (tickerMode == 1) {
+            notificationMode = 1;
+        } else {
+            notificationMode = 2;
+        }
+        mNotificationMode.setValue(String.valueOf(notificationMode));
+        mNotificationMode.setSummary(mNotificationMode.getEntry());
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -56,6 +79,28 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment imple
             int SysuiQqsCount = (Integer) newValue;
             Settings.Secure.putInt(resolver,
                     Settings.Secure.QQS_COUNT, SysuiQqsCount * 1);
+            return true;
+        } else if (preference.equals(mNotificationMode)) {
+            int notificationMode = Integer.parseInt(((String) newValue).toString());
+            int headsupMode;
+            int tickerMode;
+            if (notificationMode == 0) {
+                headsupMode = 1;
+                tickerMode = 0;
+            } else if (notificationMode == 1) {
+                headsupMode = 0;
+                tickerMode = 1;
+            } else {
+                headsupMode = 0;
+                tickerMode = 0;
+            }
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.HEADS_UP_USER_ENABLED, headsupMode, UserHandle.USER_CURRENT);
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.STATUS_BAR_SHOW_TICKER, tickerMode, UserHandle.USER_CURRENT);
+            int index = mNotificationMode.findIndexOfValue((String) newValue);
+            mNotificationMode.setSummary(
+                    mNotificationMode.getEntries()[index]);
             return true;
         }
         return false;
