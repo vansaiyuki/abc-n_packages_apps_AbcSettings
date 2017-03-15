@@ -349,6 +349,14 @@
     <string name="action_value_voice_search" translatable="false">task_voice_search</string>
     <string name="action_value_menu" translatable="false">task_menu</string>
 
+	<!-- OmniJaws -->
+    <string name="qs_omnijaws_category">Weather QS tile</string>
+    <string name="weather_config_title">Weather settings</string>
+    <string name="weather_config_summary"></string>
+    <string name="header_weather_title">Header view weather</string>
+    <string name="header_weather_summary">Enable notification panel header weather display</string>
+    <string name="weather_icon_pack_title">Condition icon pack</string>
+	
     <!-- Fling -->
     <string name="fling_settings">Fling settings</string>
     <string name="fling_interface">Fling</string>
